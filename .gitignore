@@ -5,7 +5,8 @@ venv/
 *.egg-info/
 .pytest_cache/
 .ruff_cache/
-data/
+data/raw/
+data/parsed/
 *.index
 *.faiss
 .env

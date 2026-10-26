@@ -1,0 +1,30 @@
+# Phase 1 ingestion config: fetching the arXiv corpus and extracting it into
+# page-aware, chunked records. See docs/design/phase-1.md for the contract.
+
+fetch:
+  categories: [cs.CL, cs.LG, cs.CV, cs.IR]
+  published_after: "2023-01-01"
+  published_before: null
+  max_papers: 300
+  request_delay_seconds: 3.0
+  page_size: 100
+  timeout_seconds: 60
+  max_retries: 3
+
+manifest_path: "data/manifest.jsonl"
+pdf_dir: "data/raw"
+out_dir: "data/parsed"
+record_format: "jsonl"
+
+chunk_size_tokens: 300
+chunk_overlap_tokens: 50
+min_chunk_tokens: 50
+
+min_text_chars_per_page: 100
+
+table_detection: true
+figure_extraction: true
+figure_dpi: 150
+caption_search_radius_pts: 40
+
+skip_on_error: true
