@@ -1,0 +1,39 @@
+[project]
+name = "docsense"
+version = "0.1.0"
+description = "Multimodal retrieval-augmented QA over arXiv ML papers with page-level citations"
+requires-python = ">=3.11"
+dependencies = [
+    "rank-bm25",
+    "sentence-transformers",
+    "faiss-cpu",
+    "pymupdf",
+    "fastapi",
+    "uvicorn",
+    "pyyaml",
+    "pydantic",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
