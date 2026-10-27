@@ -7,6 +7,7 @@ venv/
 .ruff_cache/
 data/raw/
 data/parsed/
+data/index/
 *.index
 *.faiss
 .env

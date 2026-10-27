@@ -1,0 +1,33 @@
+# Dev/CI-only smoke config: same keys as baseline.yaml (config-completeness,
+# acceptance criterion 15) but with the hash embedder and the numpy vector store,
+# so scripts/build_index.py and scripts/query.py run end-to-end with no model
+# download and no faiss dependency. Never a reported retrieval result (Tradeoff #8).
+
+variant_name: "offline_smoke"
+seed: 0
+
+chunks_path: "data/parsed/chunks.jsonl"
+index_dir: "data/index/offline_smoke"
+record_format: "jsonl"
+
+embedder:
+  type: "hash"
+  model_name: "BAAI/bge-small-en-v1.5"
+  dim: 384
+  normalize: true
+  batch_size: 32
+  device: null
+  max_seq_length: 512
+  query_prefix: "Represent this sentence for searching relevant passages: "
+  passage_prefix: ""
+  trust_remote_code: false
+
+index:
+  type: "numpy_flat_ip"
+  # Unused by numpy_flat_ip (faiss-only knob); kept so every config has the
+  # same key set (acceptance criterion 15).
+  num_threads: 1
+
+retrieval:
+  top_k: 5
+  max_chunks_per_paper: null

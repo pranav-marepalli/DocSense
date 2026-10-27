@@ -1,5 +1,6 @@
-"""Acceptance criterion 15 (gitignore half): data/raw/ and data/parsed/ are
-ignored, but data/manifest.jsonl is not."""
+"""Acceptance criterion 15 (gitignore half, Phase 1) and acceptance criterion 16
+(Phase 2): data/raw/, data/parsed/, and data/index/ are ignored, but
+data/manifest.jsonl is not."""
 
 import subprocess
 from pathlib import Path
@@ -24,3 +25,9 @@ def test_data_raw_and_parsed_are_ignored():
 
 def test_manifest_is_not_ignored():
     assert not _is_ignored("data/manifest.jsonl")
+
+
+def test_data_index_is_ignored():
+    assert _is_ignored("data/index/baseline/index_manifest.json")
+    assert _is_ignored("data/index/baseline/chunk_meta.jsonl")
+    assert _is_ignored("data/index/baseline/vectors.npy")

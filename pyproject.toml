@@ -12,6 +12,7 @@ dependencies = [
     "uvicorn",
     "pyyaml",
     "pydantic",
+    "numpy",
 ]
 
 [project.optional-dependencies]
