@@ -18,3 +18,12 @@ class Retriever(Protocol):
     def retrieve(self, query: str, top_k: int | None = None) -> RetrievalResult:
         """Ranked hits for `query`, `top_k` defaulting to the retriever's configured value."""
         ...
+
+    def retrieve_batch(
+        self, queries: list[str], top_k: int | None = None
+    ) -> list[RetrievalResult]:
+        """Ranked hits for every query in `queries`, same per-query semantics as `retrieve`.
+
+        What Phase 3's eval harness uses.
+        """
+        ...

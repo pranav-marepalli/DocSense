@@ -31,3 +31,16 @@ def test_data_index_is_ignored():
     assert _is_ignored("data/index/baseline/index_manifest.json")
     assert _is_ignored("data/index/baseline/chunk_meta.jsonl")
     assert _is_ignored("data/index/baseline/vectors.npy")
+
+
+def test_data_eval_runs_and_derived_are_ignored():
+    """Acceptance criterion 16 (Phase 3)."""
+    assert _is_ignored("data/eval/runs/20240101T000000Z_baseline.json")
+    assert _is_ignored("data/eval/derived/eval_texts.jsonl")
+
+
+def test_data_eval_gold_set_and_readme_are_not_ignored():
+    """Acceptance criterion 16 (Phase 3): the gold set and its README are the
+    project's irreplaceable human artifacts and must stay tracked."""
+    assert not _is_ignored("data/eval/gold_set.jsonl")
+    assert not _is_ignored("data/eval/README.md")
